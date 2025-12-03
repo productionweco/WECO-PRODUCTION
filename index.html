@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weco Electric - Votre boutique d'électronique</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #000;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1a1a1a 0%, #000 100%);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(255, 215, 0, 0.3);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 2.5em;
+            font-weight: bold;
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: center;
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { filter: drop-shadow(0 0 10px #ffd700); }
+            50% { filter: drop-shadow(0 0 20px #ffd700); }
+        }
+
+        .hero {
+            padding: 80px 20px;
+            text-align: center;
+            background: radial-gradient(circle at center, #1a1a1a 0%, #000 100%);
+        }
+
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            animation: slideDown 1s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.3em;
+            color: #ffd700;
+            margin-bottom: 30px;
+            animation: slideUp 1s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .products {
+            padding: 60px 20px;
+        }
+
+        .products h2 {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 50px;
+            color: #ffd700;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background: linear-gradient(145deg, #1a1a1a, #0d0d0d);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #ffd700, #ffed4e, #ffd700);
+            border-radius: 15px;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .product-card:hover::before {
+            opacity: 1;
+            animation: borderRotate 3s linear infinite;
+        }
+
+        @keyframes borderRotate {
+            0% { filter: hue-rotate(0deg); }
+            100% { filter: hue-rotate(360deg); }
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(255, 215, 0, 0.4);
+        }
+
+        .product-icon {
+            font-size: 4em;
+            margin-bottom: 20px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .product-card:nth-child(1) .product-icon { animation-delay: 0s; }
+        .product-card:nth-child(2) .product-icon { animation-delay: 0.3s; }
+        .product-card:nth-child(3) .product-icon { animation-delay: 0.6s; }
+        .product-card:nth-child(4) .product-icon { animation-delay: 0.9s; }
+        .product-card:nth-child(5) .product-icon { animation-delay: 1.2s; }
+
+        .product-card h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            color: #ffd700;
+        }
+
+        .product-card p {
+            color: #ccc;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .btn {
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            color: #000;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.6);
+        }
+
+        .footer {
+            background: #0d0d0d;
+            padding: 30px 20px;
+            text-align: center;
+            margin-top: 60px;
+            border-top: 2px solid #ffd700;
+        }
+
+        .contact-info {
+            margin: 20px 0;
+        }
+
+        .contact-info p {
+            margin: 10px 0;
+            color: #ffd700;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .pulse {
+            animation: pulse 2s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">⚡ WECO ELECTRIC ⚡</div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Bienvenu nan Weco Electric</h1>
+            <p class="pulse">Tout sa ou bezwen pou teknoloji ou!</p>
+        </div>
+    </section>
+
+    <section class="products">
+        <div class="container">
+            <h2>Pwodwi Nou Yo</h2>
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="product-icon">📱</div>
+                    <h3>Telefòn</h3>
+                    <p>Dènye modèl telefòn android ak iOS. Kalite siperyè, pri rezonab.</p>
+                    <button class="btn">Gade Plis</button>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-icon">📦</div>
+                    <h3>Kas Telefòn</h3>
+                    <p>Kas solid ak elegans pou pwoteje telefòn ou. Divès koulè ak style.</p>
+                    <button class="btn">Gade Plis</button>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-icon">🔋</div>
+                    <h3>Power Bank</h3>
+                    <p>Backup pisan pou chaje telefòn ou nenpòt kote. Kapasite 10,000-50,000 mAh.</p>
+                    <button class="btn">Gade Plis</button>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-icon">🔌</div>
+                    <h3>Chajè</h3>
+                    <p>Chajè rapid USB-C ak USB pou tout aparèy. Orijinal ak garanti.</p>
+                    <button class="btn">Gade Plis</button>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-icon">🎧</div>
+                    <h3>Akseswa</h3>
+                    <p>Ekoutè, kab, pwotektè ekran ak plis ankò. Akseswa kalite pou tout aparèy.</p>
+                    <button class="btn">Gade Plis</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="contact-info">
+                <p>📞 Kontakte nou: +509 XXXX-XXXX</p>
+                <p>📍 Adrès: Pòtoprens, Ayiti</p>
+                <p>✉️ Email: info@wecoelectric.com</p>
+            </div>
+            <p>&copy; 2024 Weco Electric. Tout dwa rezève.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelectorAll('.btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                const ripple = document.createElement('span');
+                ripple.style.position = 'absolute';
+                ripple.style.width = '20px';
+                ripple.style.height = '20px';
+                ripple.style.background = 'rgba(255,255,255,0.6)';
+                ripple.style.borderRadius = '50%';
+                ripple.style.transform = 'scale(0)';
+                ripple.style.animation = 'ripple 0.6s ease-out';
+                
+                this.appendChild(ripple);
+                
+                setTimeout(() => ripple.remove(), 600);
+            });
+        });
+
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
